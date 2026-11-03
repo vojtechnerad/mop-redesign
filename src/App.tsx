@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Alert from './components/Alert'
 import type { AlertTone } from './components/Alert'
+import Badge from './components/Badge'
 import Checkbox from './components/Checkbox'
 import {
   DropdownMenu,
@@ -185,6 +186,61 @@ function AlertPreview() {
   )
 }
 
+function BadgePreview() {
+  const [dismissed, setDismissed] = useState(false)
+
+  return (
+    <section
+      aria-labelledby="badge-examples-heading"
+      className="border-t border-neutral-100 px-6 py-10 sm:px-10 dark:border-neutral-800"
+    >
+      <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[180px_1fr]">
+        <h2 id="badge-examples-heading" className="text-lg font-semibold">Badge</h2>
+        <div className="flex min-w-0 flex-col gap-8">
+          <div className="flex flex-col items-start gap-4">
+            <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">Sizes</h3>
+            <div className="flex flex-wrap items-center gap-3">
+              <Badge size="small">Small</Badge>
+              <Badge>Default</Badge>
+              <Badge size="large">Large</Badge>
+            </div>
+          </div>
+          <div className="flex flex-col items-start gap-4">
+            <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">Content</h3>
+            <div className="flex flex-wrap items-center gap-3">
+              <Badge tone="secondary">Text</Badge>
+              <Badge tone="secondary" icon={
+                <>
+                  <img src="/badge-check-light.svg" alt="" width="12" height="12" className="dark:hidden" />
+                  <img src="/badge-check-dark.svg" alt="" width="12" height="12" className="hidden dark:block" />
+                </>
+              }>Icon</Badge>
+              <Badge tone="secondary" dot>Dot</Badge>
+              {dismissed ? (
+                <button type="button" onClick={() => setDismissed(false)} className="cursor-pointer text-xs font-semibold text-brand-700 underline focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-blue-300/40 dark:text-brand-500">Restore badge</button>
+              ) : (
+                <Badge tone="secondary" onDismiss={() => setDismissed(true)}>Dismissible</Badge>
+              )}
+            </div>
+          </div>
+          <div className="flex flex-col items-start gap-4">
+            <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">Tones</h3>
+            <div className="flex flex-wrap items-center gap-3">
+              <Badge>Default</Badge>
+              <Badge tone="secondary">Secondary</Badge>
+              <Badge tone="outline">Outline</Badge>
+              <Badge tone="destructive">Destructive</Badge>
+              <Badge tone="success">Success</Badge>
+              <Badge tone="warning">Warning</Badge>
+              <Badge tone="info">Info</Badge>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function SkeletonPreview() {
   return (
     <section
@@ -357,6 +413,8 @@ export default function App() {
             <p className="mb-3 text-xs font-medium text-neutral-600 dark:text-neutral-200">mop redesign</p>
             <h1 className="text-4xl font-semibold">Components</h1>
           </div>
+          <div>
+            
           <button
             type="button"
             onClick={toggleTheme}
@@ -366,12 +424,15 @@ export default function App() {
           >
             {theme === 'dark' ? 'Light theme' : 'Dark theme'}
           </button>
+          <span className="mr-4 text-warning-800 px-2 py-1 rounded">Try me ↑</span>
+          </div>
         </div>
       </header>
       <CheckboxPreview />
       <SwitchPreview />
       <InputPreview />
       <AlertPreview />
+      <BadgePreview />
       <SkeletonPreview />
       <SpinnerPreview />
       <DropdownMenuPreview />
