@@ -4,6 +4,7 @@
 @theme {
 	--font-raleway: "Raleway Variable", sans-serif;
 	--font-sans: var(--font-raleway);
+	--default-mono-font-family: var(--font-raleway);
 
 	--spacing: 4px;
 	--spacing-0: 0px;
