@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Alert from './components/Alert'
 import type { AlertTone } from './components/Alert'
 import Badge from './components/Badge'
+import Button from './components/Button'
 import Checkbox from './components/Checkbox'
 import {
   DropdownMenu,
@@ -241,6 +242,57 @@ function BadgePreview() {
   )
 }
 
+function ButtonPreview() {
+  const [clicks, setClicks] = useState(0)
+
+  return (
+    <section
+      aria-labelledby="button-examples-heading"
+      className="border-t border-neutral-100 px-6 py-10 sm:px-10 dark:border-neutral-800"
+    >
+      <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[180px_1fr]">
+        <h2 id="button-examples-heading" className="text-lg font-semibold">Button</h2>
+        <div className="flex min-w-0 flex-col gap-8">
+          <div className="flex flex-col items-start gap-4">
+            <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">Sizes</h3>
+            <div className="flex flex-wrap items-center gap-3">
+              <Button size="small">Small</Button>
+              <Button onClick={() => setClicks(current => current + 1)}>Default</Button>
+              <Button size="large">Large</Button>
+              <Button size="icon" aria-label="Download" title="Download">
+                <img src="/button-icon.svg" alt="" width="16" height="16" />
+              </Button>
+            </div>
+            <span className="text-xs text-neutral-600 dark:text-neutral-200" aria-live="polite">{clicks > 0 && `Activated: ${clicks}`}</span>
+          </div>
+          <div className="flex flex-col items-start gap-4">
+            <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">Variants</h3>
+            <div className="flex flex-wrap items-center gap-3">
+              <Button>Default</Button>
+              <Button variant="secondary">Secondary</Button>
+              <Button variant="outline">Outline</Button>
+              <Button variant="ghost">Ghost</Button>
+              <Button variant="destructive">Destructive</Button>
+              <Button variant="link">Link</Button>
+            </div>
+          </div>
+          <div className="flex flex-col items-start gap-4">
+            <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">Content and states</h3>
+            <div className="flex flex-wrap items-center gap-3">
+              <Button
+                leadingIcon={<img src="/button-leading.svg" alt="" width="16" height="16" />}
+                trailingIcon={<img src="/button-trailing.svg" alt="" width="16" height="16" />}
+              >With icons</Button>
+              <Button disabled>Disabled</Button>
+              <Button loading>Loading</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function SkeletonPreview() {
   return (
     <section
@@ -433,6 +485,7 @@ export default function App() {
       <InputPreview />
       <AlertPreview />
       <BadgePreview />
+      <ButtonPreview />
       <SkeletonPreview />
       <SpinnerPreview />
       <DropdownMenuPreview />
