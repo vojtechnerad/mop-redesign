@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from './components/DropdownMenu'
 import Input from './components/Input'
+import Sidebar, { SidebarGroup, SidebarGroupLabel, SidebarHeader, SidebarItem, SidebarProfile } from './components/Sidebar'
 import Skeleton from './components/Skeleton'
 import Spinner from './components/Spinner'
 import Switch from './components/Switch'
@@ -280,6 +281,70 @@ function DropdownMenuPreview() {
   )
 }
 
+function SidebarPreview() {
+  const [selected, setSelected] = useState('Přehled')
+  const [expanded, setExpanded] = useState(true)
+
+  return (
+    <section
+      aria-labelledby="sidebar-examples-heading"
+      className="border-t border-neutral-100 px-6 py-10 sm:px-10 dark:border-neutral-800"
+    >
+      <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[180px_1fr]">
+        <h2 id="sidebar-examples-heading" className="text-lg font-semibold">Sidebar</h2>
+        <Sidebar
+          className="ring-1 ring-neutral-100 dark:ring-neutral-800"
+          header={<SidebarHeader logo={<img src="/sidebar-logo.png" alt="" width="20" height="20" />}>MOP</SidebarHeader>}
+          footer={
+            <>
+              <SidebarItem active={selected === 'Oznámení'} onClick={() => setSelected('Oznámení')} icon={
+                <>
+                  <img src="/sidebar-bell-light.svg" alt="" width="20" height="20" className="dark:hidden" />
+                  <img src="/sidebar-bell-dark.svg" alt="" width="20" height="20" className="hidden dark:block" />
+                </>
+              }>Oznámení</SidebarItem>
+              <SidebarItem active={selected === 'Nastavení'} onClick={() => setSelected('Nastavení')} icon={
+                <span className="relative flex size-6 items-center justify-center">
+                  <img src="/sidebar-settings-light.svg" alt="" width="20" height="20" className="dark:hidden" />
+                  <img src="/sidebar-settings-dark-overlay.svg" alt="" width="24" height="24" className="absolute inset-0 hidden dark:block" />
+                  <img src="/sidebar-settings-dark.svg" alt="" width="20" height="20" className="hidden dark:block" />
+                </span>
+              }>Nastavení</SidebarItem>
+            </>
+          }
+          profile={
+            <SidebarProfile name="John Doe" initials="AM" action={
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <button type="button" aria-label="Profil John Doe" className="flex size-6 shrink-0 items-center justify-center rounded-sm focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-blue-300/40">
+                    <img src="/sidebar-dots-light.svg" alt="" width="24" height="24" className="dark:hidden" />
+                    <img src="/sidebar-dots-dark.svg" alt="" width="24" height="24" className="hidden dark:block" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuButton onSelect={() => setSelected('Profil')}>Profil</DropdownMenuButton>
+                  <DropdownMenuButton onSelect={() => setSelected('Odhlásit se')}>Odhlásit se</DropdownMenuButton>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            } />
+          }
+        >
+          <SidebarGroup>
+            <SidebarGroupLabel>Navigace</SidebarGroupLabel>
+            <SidebarItem active={selected === 'Přehled'} onClick={() => setSelected('Přehled')}>Přehled</SidebarItem>
+            <SidebarItem expanded={expanded} onClick={() => setExpanded(current => !current)} aria-controls="sidebar-preview-reservations">Rezervace</SidebarItem>
+            <div id="sidebar-preview-reservations" hidden={!expanded} className={expanded ? 'flex flex-col gap-1' : ''}>
+              <SidebarItem nested active={selected === 'Všechny rezervace'} onClick={() => setSelected('Všechny rezervace')}>Všechny rezervace</SidebarItem>
+              <SidebarItem nested active={selected === 'Nadcházející'} onClick={() => setSelected('Nadcházející')} badge="3">Nadcházející</SidebarItem>
+            </div>
+            <SidebarItem disabled>Archiv</SidebarItem>
+          </SidebarGroup>
+        </Sidebar>
+      </div>
+    </section>
+  )
+}
+
 export default function App() {
   const { theme, toggleTheme } = useTheme()
 
@@ -309,6 +374,7 @@ export default function App() {
       <SkeletonPreview />
       <SpinnerPreview />
       <DropdownMenuPreview />
+      <SidebarPreview />
     </main>
   )
 }
