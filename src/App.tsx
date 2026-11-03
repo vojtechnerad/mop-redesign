@@ -2,6 +2,18 @@ import { useState } from 'react'
 import Alert from './components/Alert'
 import type { AlertTone } from './components/Alert'
 import Checkbox from './components/Checkbox'
+import {
+  DropdownMenu,
+  DropdownMenuButton,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from './components/DropdownMenu'
 import Input from './components/Input'
 import Skeleton from './components/Skeleton'
 import Spinner from './components/Spinner'
@@ -218,6 +230,56 @@ function SpinnerPreview() {
   )
 }
 
+function DropdownMenuPreview() {
+  const [selected, setSelected] = useState('')
+
+  return (
+    <section
+      aria-labelledby="dropdown-menu-examples-heading"
+      className="border-t border-neutral-100 px-6 py-10 sm:px-10 dark:border-neutral-800"
+    >
+      <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[180px_1fr]">
+        <h2 id="dropdown-menu-examples-heading" className="text-lg font-semibold">Dropdown menu</h2>
+        <div className="flex flex-col items-start gap-4">
+          <DropdownMenu>
+            <DropdownMenuTrigger><button type="button">Open menu</button></DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              <DropdownMenuGroup>
+                <DropdownMenuLabel>User</DropdownMenuLabel>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Profile</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuGroup>
+                      <DropdownMenuLabel>Multiple layers</DropdownMenuLabel>
+                      <DropdownMenuSub>
+                        <DropdownMenuSubTrigger>Share</DropdownMenuSubTrigger>
+                        <DropdownMenuSubContent>
+                          <DropdownMenuButton onSelect={() => setSelected('Mail')}>Mail</DropdownMenuButton>
+                          <DropdownMenuButton onSelect={() => setSelected('Teams')}>Teams</DropdownMenuButton>
+                        </DropdownMenuSubContent>
+                      </DropdownMenuSub>
+                      <DropdownMenuButton onSelect={() => setSelected('Another action')}>Another action</DropdownMenuButton>
+                    </DropdownMenuGroup>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+                <DropdownMenuButton onSelect={() => setSelected('Bookings')}>Bookings</DropdownMenuButton>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                <DropdownMenuButton onSelect={() => setSelected('Actions')}>Actions</DropdownMenuButton>
+                <DropdownMenuButton variant="danger" onSelect={() => setSelected('Suspend')}>Suspend</DropdownMenuButton>
+                <DropdownMenuButton variant="danger" onSelect={() => setSelected('Delete')}>Delete</DropdownMenuButton>
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <span className="text-sm text-neutral-600 dark:text-neutral-300" aria-live="polite">{selected && `Selected: ${selected}`}</span>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function App() {
   const { theme, toggleTheme } = useTheme()
 
@@ -246,6 +308,7 @@ export default function App() {
       <AlertPreview />
       <SkeletonPreview />
       <SpinnerPreview />
+      <DropdownMenuPreview />
     </main>
   )
 }

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fontsource-variable/raleway": "^5.3.0",
+    "@radix-ui/react-dropdown-menu": "^2.2.1",
     "@tailwindcss/vite": "^4.3.4",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
