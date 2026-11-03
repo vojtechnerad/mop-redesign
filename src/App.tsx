@@ -284,6 +284,7 @@ function DropdownMenuPreview() {
 function SidebarPreview() {
   const [selected, setSelected] = useState('Přehled')
   const [expanded, setExpanded] = useState(true)
+  const navigationIcon = <span className="size-3.5 rounded-full bg-current" />
 
   return (
     <section
@@ -331,13 +332,13 @@ function SidebarPreview() {
         >
           <SidebarGroup>
             <SidebarGroupLabel>Navigace</SidebarGroupLabel>
-            <SidebarItem active={selected === 'Přehled'} onClick={() => setSelected('Přehled')}>Přehled</SidebarItem>
-            <SidebarItem expanded={expanded} onClick={() => setExpanded(current => !current)} aria-controls="sidebar-preview-reservations">Rezervace</SidebarItem>
+            <SidebarItem icon={navigationIcon} active={selected === 'Přehled'} onClick={() => setSelected('Přehled')}>Přehled</SidebarItem>
+            <SidebarItem icon={navigationIcon} expanded={expanded} onClick={() => setExpanded(current => !current)} aria-controls="sidebar-preview-reservations">Rezervace</SidebarItem>
             <div id="sidebar-preview-reservations" hidden={!expanded} className={expanded ? 'flex flex-col gap-1' : ''}>
-              <SidebarItem nested active={selected === 'Všechny rezervace'} onClick={() => setSelected('Všechny rezervace')}>Všechny rezervace</SidebarItem>
-              <SidebarItem nested active={selected === 'Nadcházející'} onClick={() => setSelected('Nadcházející')} badge="3">Nadcházející</SidebarItem>
+              <SidebarItem icon={navigationIcon} nested active={selected === 'Všechny rezervace'} onClick={() => setSelected('Všechny rezervace')}>Všechny rezervace</SidebarItem>
+              <SidebarItem icon={navigationIcon} nested active={selected === 'Nadcházející'} onClick={() => setSelected('Nadcházející')} badge="3">Nadcházející</SidebarItem>
             </div>
-            <SidebarItem disabled>Archiv</SidebarItem>
+            <SidebarItem icon={navigationIcon} disabled>Archiv</SidebarItem>
           </SidebarGroup>
         </Sidebar>
       </div>
