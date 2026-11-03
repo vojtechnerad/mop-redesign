@@ -4,6 +4,7 @@ import type { AlertTone } from './components/Alert'
 import Checkbox from './components/Checkbox'
 import Input from './components/Input'
 import Skeleton from './components/Skeleton'
+import Spinner from './components/Spinner'
 import Switch from './components/Switch'
 import { useTheme } from './Theme'
 
@@ -194,6 +195,29 @@ function SkeletonPreview() {
   )
 }
 
+function SpinnerPreview() {
+  return (
+    <section
+      aria-labelledby="spinner-examples-heading"
+      className="border-t border-neutral-100 px-6 py-10 sm:px-10 dark:border-neutral-800"
+    >
+      <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[180px_1fr]">
+        <h2 id="spinner-examples-heading" className="text-lg font-semibold">Spinner</h2>
+        <div className="flex flex-wrap gap-10">
+          {(['primary', 'black', 'white'] as const).map(variant => (
+            <div key={variant} className="flex flex-col items-start gap-4">
+              <h3 className="text-xs font-medium text-neutral-600 capitalize dark:text-neutral-200">{variant}</h3>
+              <div className={`flex h-12 w-20 items-center justify-center rounded-md ${variant === 'white' ? 'bg-neutral-900' : 'bg-neutral-50'}`}>
+                <Spinner variant={variant} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function App() {
   const { theme, toggleTheme } = useTheme()
 
@@ -221,6 +245,7 @@ export default function App() {
       <InputPreview />
       <AlertPreview />
       <SkeletonPreview />
+      <SpinnerPreview />
     </main>
   )
 }
