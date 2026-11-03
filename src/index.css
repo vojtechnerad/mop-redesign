@@ -1,6 +1,10 @@
+@import "@fontsource-variable/raleway";
 @import "tailwindcss";
 
 @theme {
+	--font-raleway: "Raleway Variable", sans-serif;
+	--font-sans: var(--font-raleway);
+
 	--spacing: 4px;
 	--spacing-0: 0px;
 	--spacing-1: 4px;
