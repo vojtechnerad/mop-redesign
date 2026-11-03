@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import Checkbox from './components/Checkbox'
+import Input from './components/Input'
+import Switch from './components/Switch'
 import { useTheme } from './Theme'
 
 const teams = [
@@ -20,7 +22,7 @@ function CheckboxPreview() {
     >
       <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[180px_1fr]">
         <h2 id="checkbox-examples-heading" className="text-lg font-semibold">
-          Selection
+          Checkbox
         </h2>
         <div className="grid gap-10 sm:grid-cols-2">
           <fieldset className="flex min-w-0 flex-col gap-6">
@@ -66,6 +68,65 @@ function CheckboxPreview() {
   )
 }
 
+function SwitchPreview() {
+  return (
+    <section
+      aria-labelledby="switch-examples-heading"
+      className="border-t border-neutral-100 px-6 py-10 sm:px-10 dark:border-neutral-800"
+    >
+      <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[180px_1fr]">
+        <h2 id="switch-examples-heading" className="text-lg font-semibold">
+          Switch
+        </h2>
+        <div className="grid gap-10 sm:grid-cols-2">
+          <Switch
+            className="place-self-start"
+            label="Switch label"
+            description="Supporting description"
+            name="notifications"
+            data-testid="switch-active"
+          />
+          <fieldset className="flex min-w-0 flex-col gap-6">
+            <legend className="mb-6 text-xs font-medium text-neutral-600 dark:text-neutral-200">
+              Disabled
+            </legend>
+            <Switch label="Switch label" description="Supporting description" defaultChecked disabled data-testid="switch-disabled-on" />
+            <Switch label="Switch label" description="Supporting description" disabled data-testid="switch-disabled-off" />
+          </fieldset>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function InputPreview() {
+  return (
+    <section
+      aria-labelledby="input-examples-heading"
+      className="border-t border-neutral-100 px-6 py-10 sm:px-10 dark:border-neutral-800"
+    >
+      <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[180px_1fr]">
+        <h2 id="input-examples-heading" className="text-lg font-semibold">
+          Input
+        </h2>
+        <div className="grid gap-10 sm:grid-cols-2">
+          <div className="flex min-w-0 flex-col gap-6">
+            <Input label="Default" description="Supporting text" placeholder="Text" name="input-default" />
+            <Input label="Error" description="Please check the entered value." placeholder="Text" status="error" name="input-error" />
+            <Input label="Success" description="The value is valid." placeholder="Text" status="success" name="input-success" />
+            <Input label="Read only" description="This value cannot be edited." defaultValue="Read-only value" readOnly />
+          </div>
+          <div className="flex min-w-0 flex-col gap-6">
+            <Input label="Disabled" description="Supporting text" placeholder="Text" disabled />
+            <Input label="Disabled error" description="Supporting text" placeholder="Text" status="error" disabled />
+            <Input label="Disabled success" description="Supporting text" placeholder="Text" status="success" disabled />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function App() {
   const { theme, toggleTheme } = useTheme()
 
@@ -75,7 +136,7 @@ export default function App() {
         <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4">
           <div>
             <p className="mb-3 text-xs font-medium text-neutral-600 dark:text-neutral-200">mop redesign</p>
-            <h1 className="text-4xl font-semibold">Checkbox</h1>
+            <h1 className="text-4xl font-semibold">Components</h1>
           </div>
           <button
             type="button"
@@ -89,6 +150,8 @@ export default function App() {
         </div>
       </header>
       <CheckboxPreview />
+      <SwitchPreview />
+      <InputPreview />
     </main>
   )
 }
