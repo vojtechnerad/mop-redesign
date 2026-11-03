@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import Alert from './components/Alert'
+import type { AlertTone } from './components/Alert'
 import Checkbox from './components/Checkbox'
 import Input from './components/Input'
+import Skeleton from './components/Skeleton'
 import Switch from './components/Switch'
 import { useTheme } from './Theme'
 
@@ -127,6 +130,70 @@ function InputPreview() {
   )
 }
 
+const alertExamples: { tone: AlertTone; title: string; description: string }[] = [
+  { tone: 'info', title: 'Information', description: 'There is a new update available.' },
+  { tone: 'success', title: 'Success', description: 'Your changes have been saved.' },
+  { tone: 'warning', title: 'Warning', description: 'Please review your settings.' },
+  { tone: 'error', title: 'Error', description: 'Something went wrong. Please try again.' },
+]
+
+function AlertPreview() {
+  const [dismissed, setDismissed] = useState<AlertTone[]>([])
+
+  return (
+    <section
+      aria-labelledby="alert-examples-heading"
+      className="border-t border-neutral-100 px-6 py-10 sm:px-10 dark:border-neutral-800"
+    >
+      <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[180px_1fr]">
+        <h2 id="alert-examples-heading" className="text-lg font-semibold">Alert</h2>
+        <div className="flex min-w-0 flex-col items-start gap-6">
+          {alertExamples.filter(example => !dismissed.includes(example.tone)).map(example => (
+            <Alert
+              key={example.tone}
+              {...example}
+              dismissLabel={`Dismiss ${example.tone} alert`}
+              onDismiss={() => setDismissed(current => [...current, example.tone])}
+            />
+          ))}
+          {dismissed.length > 0 && (
+            <button
+              type="button"
+              onClick={() => setDismissed([])}
+              className="cursor-pointer text-sm font-semibold text-brand-700 underline focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-blue-300/40 dark:text-brand-500"
+            >
+              Restore alerts
+            </button>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function SkeletonPreview() {
+  return (
+    <section
+      aria-labelledby="skeleton-examples-heading"
+      className="border-t border-neutral-100 px-6 py-10 sm:px-10 dark:border-neutral-800"
+    >
+      <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[180px_1fr]">
+        <h2 id="skeleton-examples-heading" className="text-lg font-semibold">Skeleton</h2>
+        <div className="grid min-w-0 gap-10 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-[260px_240px_56px]">
+          {(['line', 'block', 'circle'] as const).map(shape => (
+            <div key={shape} className="flex min-w-0 flex-col items-start gap-6">
+              <h3 className="text-xs font-medium text-neutral-600 capitalize dark:text-neutral-200">{shape}</h3>
+              <Skeleton shape={shape} size="small" />
+              <Skeleton shape={shape} size="default" />
+              <Skeleton shape={shape} size="large" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function App() {
   const { theme, toggleTheme } = useTheme()
 
@@ -152,6 +219,8 @@ export default function App() {
       <CheckboxPreview />
       <SwitchPreview />
       <InputPreview />
+      <AlertPreview />
+      <SkeletonPreview />
     </main>
   )
 }
