@@ -3,7 +3,7 @@ import { useTheme } from '../Theme'
 import Spinner from './Spinner'
 
 export type ButtonVariant = 'default' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'link'
-export type ButtonSize = 'small' | 'default' | 'large' | 'icon'
+export type ButtonSize = 'small' | 'default' | 'large' | 'icon' | 'icon-small' | 'icon-medium'
 
 export type ButtonProps = Omit<ComponentPropsWithRef<'button'>, 'size'> & {
   variant?: ButtonVariant
@@ -34,6 +34,8 @@ export default function Button({
     default: 'h-10 min-w-22 gap-2 px-4',
     large: 'h-12 min-w-22 gap-2 px-5',
     icon: 'h-10 w-22',
+    'icon-small': 'size-8',
+    'icon-medium': 'size-10',
   }
   const colors: Record<ButtonVariant, string> = {
     default: theme === 'dark' ? 'bg-brand-800 text-white enabled:hover:bg-brand-600' : 'bg-brand-700 text-white enabled:hover:bg-brand-800',
@@ -61,7 +63,7 @@ export default function Button({
           <span className="sr-only">{children}</span>
           <Spinner variant={spinnerVariant} aria-hidden="true" />
         </>
-      ) : size === 'icon' ? (
+      ) : size.startsWith('icon') ? (
         leadingIcon || children
       ) : (
         <>

@@ -16,6 +16,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from './components/DropdownMenu'
+import IconButton from './components/IconButton'
 import Input from './components/Input'
 import Sidebar, { SidebarGroup, SidebarGroupLabel, SidebarHeader, SidebarItem, SidebarProfile } from './components/Sidebar'
 import Skeleton from './components/Skeleton'
@@ -293,6 +294,44 @@ function ButtonPreview() {
   )
 }
 
+function IconButtonPreview() {
+  const [clicks, setClicks] = useState(0)
+  const icon = (
+    <>
+      <img src="/icon-button-download-light.svg" alt="" className="dark:hidden" />
+      <img src="/icon-button-download-dark.svg" alt="" className="hidden dark:block" />
+    </>
+  )
+
+  return (
+    <section
+      aria-labelledby="icon-button-examples-heading"
+      className="border-t border-neutral-100 px-6 py-10 sm:px-10 dark:border-neutral-800"
+    >
+      <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[180px_1fr]">
+        <h2 id="icon-button-examples-heading" className="text-lg font-semibold">Icon Button</h2>
+        <div className="flex min-w-0 flex-wrap gap-10">
+          <div className="flex flex-col items-start gap-4">
+            <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">Sizes</h3>
+            <div className="flex items-center gap-3">
+              <IconButton variant="outline" size="small" aria-label="Download, small" onClick={() => setClicks(current => current + 1)}>{icon}</IconButton>
+              <IconButton variant="outline" aria-label="Download, medium" onClick={() => setClicks(current => current + 1)}>{icon}</IconButton>
+            </div>
+          </div>
+          <div className="flex flex-col items-start gap-4">
+            <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">States</h3>
+            <div className="flex items-center gap-3">
+              <IconButton aria-label="Download" onClick={() => setClicks(current => current + 1)}>{icon}</IconButton>
+              <IconButton aria-label="Download unavailable" disabled>{icon}</IconButton>
+            </div>
+          </div>
+          <span className="self-end text-xs text-neutral-600 dark:text-neutral-200" aria-live="polite">{clicks > 0 && `Activated: ${clicks}`}</span>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function SkeletonPreview() {
   return (
     <section
@@ -486,6 +525,7 @@ export default function App() {
       <AlertPreview />
       <BadgePreview />
       <ButtonPreview />
+      <IconButtonPreview />
       <SkeletonPreview />
       <SpinnerPreview />
       <DropdownMenuPreview />
