@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Checkbox from './components/Checkbox'
+import { useTheme } from './Theme'
 
 const teams = [
   { id: 'design', label: 'Design', description: 'Product and visual design' },
@@ -7,24 +8,23 @@ const teams = [
   { id: 'operations', label: 'Operations', description: 'Planning and coordination' },
 ]
 
-function CheckboxPreview({ theme }: { theme: 'light' | 'dark' }) {
+function CheckboxPreview() {
   const [selected, setSelected] = useState(['design'])
   const allSelected = selected.length === teams.length
   const partiallySelected = selected.length > 0 && !allSelected
-  const isDark = theme === 'dark'
 
   return (
     <section
-      aria-labelledby={`${theme}-heading`}
-      className={`border-t px-6 py-10 sm:px-10 ${isDark ? 'border-neutral-800 bg-neutral-950 text-neutral-50' : 'border-neutral-100 bg-white text-neutral-900'}`}
+      aria-labelledby="checkbox-examples-heading"
+      className="border-t border-neutral-100 px-6 py-10 sm:px-10 dark:border-neutral-800"
     >
       <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[180px_1fr]">
-        <h2 id={`${theme}-heading`} className="text-lg font-semibold">
-          {isDark ? 'Dark theme' : 'Light theme'}
+        <h2 id="checkbox-examples-heading" className="text-lg font-semibold">
+          Selection
         </h2>
         <div className="grid gap-10 sm:grid-cols-2">
           <fieldset className="flex min-w-0 flex-col gap-6">
-            <legend className={`mb-6 text-xs font-medium ${isDark ? 'text-neutral-200' : 'text-neutral-600'}`}>
+            <legend className="mb-6 text-xs font-medium text-neutral-600 dark:text-neutral-200">
               Teams
             </legend>
             <Checkbox
@@ -33,34 +33,32 @@ function CheckboxPreview({ theme }: { theme: 'light' | 'dark' }) {
               checked={allSelected}
               indeterminate={partiallySelected}
               onChange={event => setSelected(event.target.checked ? teams.map(team => team.id) : [])}
-              theme={theme}
-              data-testid={`${theme}-all`}
+              data-testid="all"
             />
-            <div className={`flex flex-col gap-6 border-t pt-6 ${isDark ? 'border-neutral-800' : 'border-neutral-100'}`}>
+            <div className="flex flex-col gap-6 border-t border-neutral-100 pt-6 dark:border-neutral-800">
               {teams.map(team => (
                 <Checkbox
                   key={team.id}
                   label={team.label}
                   description={team.description}
-                  name={`${theme}-teams`}
+                  name="teams"
                   value={team.id}
                   checked={selected.includes(team.id)}
                   onChange={event => setSelected(current => event.target.checked
                     ? [...current, team.id]
                     : current.filter(id => id !== team.id))}
-                  theme={theme}
-                  data-testid={`${theme}-${team.id}`}
+                  data-testid={team.id}
                 />
               ))}
             </div>
           </fieldset>
           <fieldset className="flex min-w-0 flex-col gap-6">
-            <legend className={`mb-6 text-xs font-medium ${isDark ? 'text-neutral-200' : 'text-neutral-600'}`}>
+            <legend className="mb-6 text-xs font-medium text-neutral-600 dark:text-neutral-200">
               Disabled
             </legend>
-            <Checkbox label="Checkbox label" description="Supporting description" disabled theme={theme} data-testid={`${theme}-disabled-unchecked`} />
-            <Checkbox label="Checkbox label" description="Supporting description" defaultChecked disabled theme={theme} data-testid={`${theme}-disabled-checked`} />
-            <Checkbox label="Checkbox label" description="Supporting description" indeterminate disabled theme={theme} data-testid={`${theme}-disabled-mixed`} />
+            <Checkbox label="Checkbox label" description="Supporting description" disabled data-testid="disabled-unchecked" />
+            <Checkbox label="Checkbox label" description="Supporting description" defaultChecked disabled data-testid="disabled-checked" />
+            <Checkbox label="Checkbox label" description="Supporting description" indeterminate disabled data-testid="disabled-mixed" />
           </fieldset>
         </div>
       </div>
@@ -69,16 +67,28 @@ function CheckboxPreview({ theme }: { theme: 'light' | 'dark' }) {
 }
 
 export default function App() {
+  const { theme, toggleTheme } = useTheme()
+
   return (
-    <main className="min-h-screen bg-white text-neutral-900">
+    <main className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50">
       <header className="px-6 py-10 sm:px-10">
-        <div className="mx-auto max-w-5xl">
-          <p className="mb-3 text-xs font-medium text-neutral-600">mop redesign</p>
-          <h1 className="text-4xl font-semibold">Checkbox</h1>
+        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4">
+          <div>
+            <p className="mb-3 text-xs font-medium text-neutral-600 dark:text-neutral-200">mop redesign</p>
+            <h1 className="text-4xl font-semibold">Checkbox</h1>
+          </div>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+            title={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+            className="flex h-10 w-28 shrink-0 cursor-pointer items-center justify-center rounded-md border-1 border-neutral-100 bg-white text-sm font-medium text-neutral-700 hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-blue-300/40 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-50 dark:hover:bg-neutral-800"
+          >
+            {theme === 'dark' ? 'Light theme' : 'Dark theme'}
+          </button>
         </div>
       </header>
-      <CheckboxPreview theme="light" />
-      <CheckboxPreview theme="dark" />
+      <CheckboxPreview />
     </main>
   )
 }

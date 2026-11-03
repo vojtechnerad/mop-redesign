@@ -1,5 +1,6 @@
 import { useId, useImperativeHandle, useLayoutEffect, useRef } from 'react'
 import type { ComponentPropsWithRef, ReactNode } from 'react'
+import { useTheme } from '../Theme'
 
 export type CheckboxProps = Omit<
   ComponentPropsWithRef<'input'>,
@@ -15,7 +16,7 @@ export default function Checkbox({
   label,
   description,
   indeterminate = false,
-  theme = 'light',
+  theme: themeOverride,
   id,
   ref,
   disabled,
@@ -24,6 +25,8 @@ export default function Checkbox({
   'aria-labelledby': labelledBy,
   ...inputProps
 }: CheckboxProps) {
+  const { theme: globalTheme } = useTheme()
+  const theme = themeOverride ?? globalTheme
   const generatedId = useId()
   const inputId = id ?? generatedId
   const inputRef = useRef<HTMLInputElement>(null)

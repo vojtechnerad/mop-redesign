@@ -1,6 +1,8 @@
 @import "@fontsource-variable/raleway";
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 @theme {
 	--font-raleway: "Raleway Variable", sans-serif;
 	--font-sans: var(--font-raleway);
