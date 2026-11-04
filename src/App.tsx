@@ -610,7 +610,7 @@ export default function App() {
       <header className="px-6 py-10 sm:px-10">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="mb-3 text-xs font-medium text-neutral-600 dark:text-neutral-200">mop redesign</p>
+            <img src={`${import.meta.env.BASE_URL}mop-logo-${theme}.svg`} alt="MOP" className="mb-3 h-6 w-auto" />
             <h1 className="text-4xl font-semibold">Components</h1>
           </div>
           <div>
