@@ -3,6 +3,7 @@ import Alert from './components/Alert'
 import type { AlertTone } from './components/Alert'
 import Badge from './components/Badge'
 import Button from './components/Button'
+import Card from './components/Card'
 import Checkbox from './components/Checkbox'
 import {
   DropdownMenu,
@@ -332,6 +333,46 @@ function IconButtonPreview() {
   )
 }
 
+function CardPreview() {
+  const [selection, setSelection] = useState('')
+
+  return (
+    <section
+      aria-labelledby="card-examples-heading"
+      className="border-t border-neutral-100 px-6 py-10 sm:px-10 dark:border-neutral-800"
+    >
+      <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[180px_1fr]">
+        <h2 id="card-examples-heading" className="text-lg font-semibold">Card</h2>
+        <div className="flex min-w-0 flex-col items-start gap-4">
+          <div className="grid w-full min-w-0 gap-6 sm:grid-cols-2">
+            <Card
+              title="Workspace overview"
+              description="A clear summary of your team's day."
+              footer={
+                <>
+                  <Button onClick={() => setSelection('Accepted')}>Accept</Button>
+                  <Button variant="ghost" onClick={() => setSelection('Rejected')}>Reject</Button>
+                </>
+              }
+            >
+              <p className="min-h-18">Three requests are ready for review. Your team can respond today.</p>
+            </Card>
+            <Card
+              variant="borderless"
+              title="Team schedule"
+              description="Upcoming activity."
+              headerAction={<Button variant="ghost" size="small" onClick={() => setSelection('Schedule opened')}>View</Button>}
+            >
+              <p>The next team meeting is scheduled for tomorrow.</p>
+            </Card>
+          </div>
+          <span className="text-sm text-neutral-600 dark:text-neutral-200" aria-live="polite">{selection}</span>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function SkeletonPreview() {
   return (
     <section
@@ -526,6 +567,7 @@ export default function App() {
       <BadgePreview />
       <ButtonPreview />
       <IconButtonPreview />
+      <CardPreview />
       <SkeletonPreview />
       <SpinnerPreview />
       <DropdownMenuPreview />
