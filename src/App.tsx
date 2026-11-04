@@ -4,6 +4,8 @@ import type { AlertTone } from './components/Alert'
 import Avatar, { AvatarGroup } from './components/Avatar'
 import Badge from './components/Badge'
 import Button from './components/Button'
+import Calendar from './components/Calendar'
+import type { DateRange } from 'react-day-picker'
 import Card from './components/Card'
 import Checkbox from './components/Checkbox'
 import {
@@ -413,6 +415,32 @@ function AvatarPreview() {
   )
 }
 
+function CalendarPreview() {
+  const [selected, setSelected] = useState<Date | undefined>(new Date(2026, 0, 9))
+  const [range, setRange] = useState<DateRange | undefined>({ from: new Date(2026, 0, 9), to: new Date(2026, 0, 15) })
+
+  return (
+    <section
+      aria-labelledby="calendar-examples-heading"
+      className="border-t border-neutral-100 px-6 py-10 sm:px-10 dark:border-neutral-800"
+    >
+      <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[180px_1fr]">
+        <h2 id="calendar-examples-heading" className="text-lg font-semibold">Calendar</h2>
+        <div className="flex min-w-0 flex-wrap items-start gap-6">
+          <div className="flex max-w-full min-w-0 flex-col items-start gap-4">
+            <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">Single date</h3>
+            <Calendar mode="single" selected={selected} onSelect={setSelected} defaultMonth={new Date(2026, 0)} today={new Date(2026, 0, 7)} disabled={{ before: new Date(2026, 0, 7) }} aria-label="Select a date" />
+          </div>
+          <div className="flex max-w-full min-w-0 flex-col items-start gap-4">
+            <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">Date range</h3>
+            <Calendar mode="range" selected={range} onSelect={setRange} defaultMonth={new Date(2026, 0)} today={new Date(2026, 0, 7)} disabled={{ before: new Date(2026, 0, 7) }} excludeDisabled emptySummary="Select a date range" aria-label="Select a date range" />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function SkeletonPreview() {
   return (
     <section
@@ -609,6 +637,7 @@ export default function App() {
       <IconButtonPreview />
       <CardPreview />
       <AvatarPreview />
+      <CalendarPreview />
       <SkeletonPreview />
       <SpinnerPreview />
       <DropdownMenuPreview />
