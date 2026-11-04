@@ -628,20 +628,20 @@ export default function App() {
           </div>
         </div>
       </header>
-      <CheckboxPreview />
-      <SwitchPreview />
-      <InputPreview />
       <AlertPreview />
+      <AvatarPreview />
       <BadgePreview />
       <ButtonPreview />
-      <IconButtonPreview />
-      <CardPreview />
-      <AvatarPreview />
       <CalendarPreview />
+      <CardPreview />
+      <CheckboxPreview />
+      <DropdownMenuPreview />
+      <IconButtonPreview />
+      <InputPreview />
+      <SidebarPreview />
       <SkeletonPreview />
       <SpinnerPreview />
-      <DropdownMenuPreview />
-      <SidebarPreview />
+      <SwitchPreview />
     </main>
   )
 }
