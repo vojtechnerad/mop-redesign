@@ -217,8 +217,8 @@ function BadgePreview() {
               <Badge tone="secondary">Text</Badge>
               <Badge tone="secondary" icon={
                 <>
-                  <img src="/badge-check-light.svg" alt="" width="12" height="12" className="dark:hidden" />
-                  <img src="/badge-check-dark.svg" alt="" width="12" height="12" className="hidden dark:block" />
+                  <img src={`${import.meta.env.BASE_URL}badge-check-light.svg`} alt="" width="12" height="12" className="dark:hidden" />
+                  <img src={`${import.meta.env.BASE_URL}badge-check-dark.svg`} alt="" width="12" height="12" className="hidden dark:block" />
                 </>
               }>Icon</Badge>
               <Badge tone="secondary" dot>Dot</Badge>
@@ -265,7 +265,7 @@ function ButtonPreview() {
               <Button onClick={() => setClicks(current => current + 1)}>Default</Button>
               <Button size="large">Large</Button>
               <Button size="icon" aria-label="Download" title="Download">
-                <img src="/button-icon.svg" alt="" width="16" height="16" />
+                <img src={`${import.meta.env.BASE_URL}button-icon.svg`} alt="" width="16" height="16" />
               </Button>
             </div>
             <span className="text-xs text-neutral-600 dark:text-neutral-200" aria-live="polite">{clicks > 0 && `Activated: ${clicks}`}</span>
@@ -285,8 +285,8 @@ function ButtonPreview() {
             <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">Content and states</h3>
             <div className="flex flex-wrap items-center gap-3">
               <Button
-                leadingIcon={<img src="/button-leading.svg" alt="" width="16" height="16" />}
-                trailingIcon={<img src="/button-trailing.svg" alt="" width="16" height="16" />}
+                leadingIcon={<img src={`${import.meta.env.BASE_URL}button-leading.svg`} alt="" width="16" height="16" />}
+                trailingIcon={<img src={`${import.meta.env.BASE_URL}button-trailing.svg`} alt="" width="16" height="16" />}
               >With icons</Button>
               <Button disabled>Disabled</Button>
               <Button loading>Loading</Button>
@@ -302,8 +302,8 @@ function IconButtonPreview() {
   const [clicks, setClicks] = useState(0)
   const icon = (
     <>
-      <img src="/icon-button-download-light.svg" alt="" className="dark:hidden" />
-      <img src="/icon-button-download-dark.svg" alt="" className="hidden dark:block" />
+      <img src={`${import.meta.env.BASE_URL}icon-button-download-light.svg`} alt="" className="dark:hidden" />
+      <img src={`${import.meta.env.BASE_URL}icon-button-download-dark.svg`} alt="" className="hidden dark:block" />
     </>
   )
 
@@ -378,9 +378,9 @@ function CardPreview() {
 
 function AvatarPreview() {
   const members = [
-    { name: 'Alex Morgan', src: '/avatar-group-1.png' },
-    { name: 'Jamie Lee', src: '/avatar-group-2.png' },
-    { name: 'Taylor Green', src: '/avatar-group-3.png' },
+    { name: 'Alex Morgan', src: `${import.meta.env.BASE_URL}avatar-group-1.png` },
+    { name: 'Jamie Lee', src: `${import.meta.env.BASE_URL}avatar-group-2.png` },
+    { name: 'Taylor Green', src: `${import.meta.env.BASE_URL}avatar-group-3.png` },
   ]
 
   return (
@@ -402,7 +402,7 @@ function AvatarPreview() {
           <div className="flex flex-wrap gap-10">
             <div className="flex flex-col items-start gap-4">
               <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">Photo and status</h3>
-              <Avatar name="Alex Morgan" src="/avatar-photo.png" showStatus />
+              <Avatar name="Alex Morgan" src={`${import.meta.env.BASE_URL}avatar-photo.png`} showStatus />
             </div>
             <div className="flex flex-col items-start gap-4">
               <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">Group</h3>
@@ -551,20 +551,20 @@ function SidebarPreview() {
         <h2 id="sidebar-examples-heading" className="text-lg font-semibold">Sidebar</h2>
         <Sidebar
           className="ring-1 ring-neutral-100 dark:ring-neutral-800"
-          header={<SidebarHeader logo={<img src="/sidebar-logo.png" alt="" width="20" height="20" />}>MOP</SidebarHeader>}
+          header={<SidebarHeader logo={<img src={`${import.meta.env.BASE_URL}sidebar-logo.png`} alt="" width="20" height="20" />}>MOP</SidebarHeader>}
           footer={
             <>
               <SidebarItem active={selected === 'Oznámení'} onClick={() => setSelected('Oznámení')} icon={
                 <>
-                  <img src="/sidebar-bell-light.svg" alt="" width="20" height="20" className="dark:hidden" />
-                  <img src="/sidebar-bell-dark.svg" alt="" width="20" height="20" className="hidden dark:block" />
+                  <img src={`${import.meta.env.BASE_URL}sidebar-bell-light.svg`} alt="" width="20" height="20" className="dark:hidden" />
+                  <img src={`${import.meta.env.BASE_URL}sidebar-bell-dark.svg`} alt="" width="20" height="20" className="hidden dark:block" />
                 </>
               }>Oznámení</SidebarItem>
               <SidebarItem active={selected === 'Nastavení'} onClick={() => setSelected('Nastavení')} icon={
                 <span className="relative flex size-6 items-center justify-center">
-                  <img src="/sidebar-settings-light.svg" alt="" width="20" height="20" className="dark:hidden" />
-                  <img src="/sidebar-settings-dark-overlay.svg" alt="" width="24" height="24" className="absolute inset-0 hidden dark:block" />
-                  <img src="/sidebar-settings-dark.svg" alt="" width="20" height="20" className="hidden dark:block" />
+                  <img src={`${import.meta.env.BASE_URL}sidebar-settings-light.svg`} alt="" width="20" height="20" className="dark:hidden" />
+                  <img src={`${import.meta.env.BASE_URL}sidebar-settings-dark-overlay.svg`} alt="" width="24" height="24" className="absolute inset-0 hidden dark:block" />
+                  <img src={`${import.meta.env.BASE_URL}sidebar-settings-dark.svg`} alt="" width="20" height="20" className="hidden dark:block" />
                 </span>
               }>Nastavení</SidebarItem>
             </>
@@ -574,8 +574,8 @@ function SidebarPreview() {
               <DropdownMenu>
                 <DropdownMenuTrigger>
                   <button type="button" aria-label="Profil John Doe" className="flex size-6 shrink-0 items-center justify-center rounded-sm focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-blue-300/40">
-                    <img src="/sidebar-dots-light.svg" alt="" width="24" height="24" className="dark:hidden" />
-                    <img src="/sidebar-dots-dark.svg" alt="" width="24" height="24" className="hidden dark:block" />
+                    <img src={`${import.meta.env.BASE_URL}sidebar-dots-light.svg`} alt="" width="24" height="24" className="dark:hidden" />
+                    <img src={`${import.meta.env.BASE_URL}sidebar-dots-dark.svg`} alt="" width="24" height="24" className="hidden dark:block" />
                   </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">

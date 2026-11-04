@@ -67,7 +67,7 @@ export default function Checkbox({
         >
           <img
             data-check=""
-            src={`/checkbox-check-${theme}.svg`}
+            src={`${import.meta.env.BASE_URL}checkbox-check-${theme}.svg`}
             alt=""
             width={12}
             height={12}
@@ -76,7 +76,7 @@ export default function Checkbox({
           />
           <img
             data-mixed=""
-            src={`/checkbox-mixed-${theme}.svg`}
+            src={`${import.meta.env.BASE_URL}checkbox-mixed-${theme}.svg`}
             alt=""
             width={12}
             height={12}

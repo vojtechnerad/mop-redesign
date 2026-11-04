@@ -15,8 +15,8 @@ export type CalendarProps = DayPickerProps & {
 function NavigationButton({ direction, children: _children, className = '', ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { direction: 'left' | 'right' }) {
   return (
     <IconButton {...props} aria-label={props['aria-label'] ?? (direction === 'left' ? 'Previous month' : 'Next month')} size="small" variant="outline" className={`mop-calendar-nav-button ${className}`}>
-      <img src={`/calendar-${direction}-light.svg`} alt="" className="mop-calendar-light-asset" />
-      <img src={`/calendar-${direction}-dark.svg`} alt="" className="mop-calendar-dark-asset" />
+      <img src={`${import.meta.env.BASE_URL}calendar-${direction}-light.svg`} alt="" className="mop-calendar-light-asset" />
+      <img src={`${import.meta.env.BASE_URL}calendar-${direction}-dark.svg`} alt="" className="mop-calendar-dark-asset" />
     </IconButton>
   )
 }
@@ -77,7 +77,7 @@ export default function Calendar({ theme: themeOverride, showSummary = true, emp
         formatters={{ formatWeekdayName: date => new Intl.DateTimeFormat(props.locale?.code ?? 'en', { weekday: 'short' }).format(date).toLocaleUpperCase(), ...formatters }}
         footer={footer ?? (showSummary ? (
           <div className="mop-calendar-summary">
-            <img src={`/calendar-summary-${theme}.svg`} alt="" />
+            <img src={`${import.meta.env.BASE_URL}calendar-summary-${theme}.svg`} alt="" />
             <span>{summary}</span>
           </div>
         ) : undefined)}

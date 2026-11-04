@@ -40,7 +40,7 @@ function SidebarItemContent({ icon, active, badge, expanded, children }: Sidebar
       <span className="flex size-6 shrink-0 items-center justify-center" aria-hidden="true">{icon}</span>
       <span className="min-w-0 flex-1 truncate">{children}</span>
       {badge != null && <span className={`shrink-0 rounded-full px-1.75 py-0.75 text-[10px] font-semibold leading-3 ${active ? 'bg-brand-700 text-white' : 'bg-neutral-50 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-200'}`}>{badge}</span>}
-      {expanded !== undefined && <img src="/sidebar-chevron.svg" alt="" width="14" height="14" className={`shrink-0 dark:invert ${expanded ? 'rotate-90' : ''}`} />}
+      {expanded !== undefined && <img src={`${import.meta.env.BASE_URL}sidebar-chevron.svg`} alt="" width="14" height="14" className={`shrink-0 dark:invert ${expanded ? 'rotate-90' : ''}`} />}
     </>
   )
 }
@@ -100,8 +100,8 @@ export function SidebarProfile({ name, initials, action, className = '', ...prop
   return (
     <div {...props} className={`flex h-10 shrink-0 items-center gap-3 rounded-lg px-2 ${className}`}>
       <span className="relative flex size-6 shrink-0 items-center justify-center" aria-hidden="true">
-        <img src="/sidebar-avatar.svg" alt="" width="24" height="24" className="absolute inset-0 dark:hidden" />
-        <img src="/sidebar-avatar-dark.svg" alt="" width="24" height="24" className="absolute inset-0 hidden dark:block" />
+        <img src={`${import.meta.env.BASE_URL}sidebar-avatar.svg`} alt="" width="24" height="24" className="absolute inset-0 dark:hidden" />
+        <img src={`${import.meta.env.BASE_URL}sidebar-avatar-dark.svg`} alt="" width="24" height="24" className="absolute inset-0 hidden dark:block" />
         <span className="absolute inset-0 rounded-full border-2 border-neutral-100 dark:border-neutral-700" />
         <span className="relative text-xs font-bold leading-xs text-brand-800">{initials}</span>
       </span>

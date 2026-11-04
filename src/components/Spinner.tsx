@@ -30,7 +30,7 @@ export default function Spinner({
       {dots.map(({ index, delay }) => (
         <img
           key={index}
-          src={`/spinner-${variant}-${index}.svg`}
+          src={`${import.meta.env.BASE_URL}spinner-${variant}-${index}.svg`}
           alt=""
           aria-hidden="true"
           width={8}

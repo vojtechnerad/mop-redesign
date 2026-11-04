@@ -41,7 +41,7 @@ export default function Alert({
       <div className="flex min-w-0 items-center justify-between gap-2">
         <div className={`flex min-w-0 items-center gap-2 ${titleColor}`}>
           {showIcon && (
-            <img src={`/alert-${tone}-${theme}.svg`} alt="" aria-hidden="true" width={16} height={16} className="shrink-0" />
+            <img src={`${import.meta.env.BASE_URL}alert-${tone}-${theme}.svg`} alt="" aria-hidden="true" width={16} height={16} className="shrink-0" />
           )}
           <div className="min-w-0 text-sm leading-lg font-semibold wrap-break-word">{title}</div>
         </div>
@@ -53,7 +53,7 @@ export default function Alert({
             title={dismissLabel}
             className="-m-2 flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-md focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-blue-300/40"
           >
-            <img src={`/alert-close-${tone}-${theme}.svg`} alt="" aria-hidden="true" width={14} height={14} />
+            <img src={`${import.meta.env.BASE_URL}alert-close-${tone}-${theme}.svg`} alt="" aria-hidden="true" width={14} height={14} />
           </button>
         )}
       </div>

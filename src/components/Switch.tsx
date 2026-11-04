@@ -63,7 +63,7 @@ export default function Switch({
           return (
             <img
               key={state}
-              src={`/switch-${state}-${theme}.svg`}
+              src={`${import.meta.env.BASE_URL}switch-${state}-${theme}.svg`}
               alt=""
               aria-hidden="true"
               data-switch-state={state}

@@ -65,7 +65,7 @@ export default function Input({
         />
         {status !== 'default' && (
           <img
-            src={`/input-${status}-${theme}.svg`}
+            src={`${import.meta.env.BASE_URL}input-${status}-${theme}.svg`}
             alt=""
             aria-hidden="true"
             width={16}

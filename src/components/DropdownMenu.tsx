@@ -97,7 +97,7 @@ export function DropdownMenuSubTrigger({ variant = 'default', leadingIcon, child
     <Menu.SubTrigger {...props} className={buttonClassName(variant, className)}>
       {leadingIcon && <span className="flex shrink-0 items-center" aria-hidden="true">{leadingIcon}</span>}
       <span className="min-w-0 flex-1 truncate">{children}</span>
-      <img src="/dropdown-menu-chevron.svg" alt="" width="16" height="16" className="shrink-0 dark:invert" />
+      <img src={`${import.meta.env.BASE_URL}dropdown-menu-chevron.svg`} alt="" width="16" height="16" className="shrink-0 dark:invert" />
     </Menu.SubTrigger>
   )
 }

@@ -49,7 +49,7 @@ export default function Badge({
       <span className="min-w-0 truncate">{children}</span>
       {onDismiss && (
         <button type="button" aria-label={dismissLabel} onClick={onDismiss} className="flex size-3 shrink-0 cursor-pointer items-center justify-center rounded-xs focus-visible:outline-1 focus-visible:outline-current">
-          <span aria-hidden="true" className="size-3 bg-current" style={{ mask: 'url(/badge-dismiss.svg) center / contain no-repeat' }} />
+          <span aria-hidden="true" className="size-3 bg-current" style={{ mask: `url(${import.meta.env.BASE_URL}badge-dismiss.svg) center / contain no-repeat` }} />
         </button>
       )}
     </span>

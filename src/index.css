@@ -1,5 +1,6 @@
 @import "@fontsource-variable/raleway";
 @import "tailwindcss";
+@source not "../docs";
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 

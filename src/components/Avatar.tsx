@@ -53,12 +53,12 @@ export default function Avatar({
         <img src={src} alt="" onError={() => setFailedSrc(src ?? null)} onLoad={() => setFailedSrc(null)} className="absolute inset-0 size-full rounded-full object-cover" />
       ) : (
         <>
-          <img src={`/avatar-initials-${size}.svg`} alt="" aria-hidden="true" className="absolute inset-0" />
+          <img src={`${import.meta.env.BASE_URL}avatar-initials-${size}.svg`} alt="" aria-hidden="true" className="absolute inset-0" />
           <span className="relative max-w-full overflow-hidden whitespace-nowrap text-brand-800">{fallback.toLocaleUpperCase()}</span>
         </>
       )}
       <span className={`pointer-events-none absolute inset-0 rounded-full border-2 ${theme === 'dark' ? 'border-neutral-700' : 'border-neutral-100'}`} aria-hidden="true" />
-      {showStatus && <img src={`/avatar-status-${size}.svg`} alt="" aria-hidden="true" className="absolute right-0 bottom-0" />}
+      {showStatus && <img src={`${import.meta.env.BASE_URL}avatar-status-${size}.svg`} alt="" aria-hidden="true" className="absolute right-0 bottom-0" />}
     </span>
   )
 }
