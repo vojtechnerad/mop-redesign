@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Alert from './components/Alert'
 import type { AlertTone } from './components/Alert'
+import Avatar, { AvatarGroup } from './components/Avatar'
 import Badge from './components/Badge'
 import Button from './components/Button'
 import Card from './components/Card'
@@ -373,6 +374,45 @@ function CardPreview() {
   )
 }
 
+function AvatarPreview() {
+  const members = [
+    { name: 'Alex Morgan', src: '/avatar-group-1.png' },
+    { name: 'Jamie Lee', src: '/avatar-group-2.png' },
+    { name: 'Taylor Green', src: '/avatar-group-3.png' },
+  ]
+
+  return (
+    <section
+      aria-labelledby="avatar-examples-heading"
+      className="border-t border-neutral-100 px-6 py-10 sm:px-10 dark:border-neutral-800"
+    >
+      <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[180px_1fr]">
+        <h2 id="avatar-examples-heading" className="text-lg font-semibold">Avatar</h2>
+        <div className="flex min-w-0 flex-col gap-8">
+          <div className="flex flex-col items-start gap-4">
+            <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">Sizes</h3>
+            <div className="flex flex-wrap items-center gap-3">
+              {(['xs', 'small', 'default', 'large', 'xl'] as const).map(size => (
+                <Avatar key={size} size={size} name="Alex Morgan" />
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-10">
+            <div className="flex flex-col items-start gap-4">
+              <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">Photo and status</h3>
+              <Avatar name="Alex Morgan" src="/avatar-photo.png" showStatus />
+            </div>
+            <div className="flex flex-col items-start gap-4">
+              <h3 className="text-xs font-medium text-neutral-600 dark:text-neutral-200">Group</h3>
+              <AvatarGroup items={members} total={8} aria-label="Team members" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function SkeletonPreview() {
   return (
     <section
@@ -568,6 +608,7 @@ export default function App() {
       <ButtonPreview />
       <IconButtonPreview />
       <CardPreview />
+      <AvatarPreview />
       <SkeletonPreview />
       <SpinnerPreview />
       <DropdownMenuPreview />
